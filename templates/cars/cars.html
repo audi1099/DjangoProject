@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Левая колонка (список машин) -->
+            <div class="col-md-6">
+                <div class="cars-list d-flex flex-wrap justify-content-center">
+                    {% for car in cars %}
+                        <div class="card shadow-sm m-2 p-2"
+                             style="width: 250px; cursor: pointer;"
+                             hx-get="{% url 'car_details' car.id %}"
+                             hx-target="#car-details"
+                             hx-swap="innerHTML">
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-dark">{{ car.owner.name }}</h5>
+                                <h3 class="card-text text-muted">{{ car.license_plate }}</h3>
+                                <p> {{ car.car_make }}</p>
+
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p class="text-muted">Нет зарегистрированных машин.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Правая колонка (история ремонта) -->
+            <div class="col-md-6">
+                <div id="car-details" class="details-column p-3 border rounded shadow-sm bg-light">
+                    <h2 class="text-muted text-center">Выберите автомобиль для просмотра деталей</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

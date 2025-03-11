@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>Детали ремонта</h3>
+    <p><strong>Дата:</strong> {{ repair.date }}</p>
+    <p><strong>Услуга:</strong> {{ repair.service.name }}</p>
+    <p><strong>Описание:</strong> {{ repair.service.description }}</p>
+    <p><strong>Стоимость:</strong> {{ repair.cost }}</p>
+    <p><strong>Статус:</strong> {{ repair.get_status_display }}</p>
+{% endblock %}

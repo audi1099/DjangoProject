@@ -1,0 +1,15 @@
+{% if repairs %}
+    <h3>История ремонтов для {{ car.license_plate }}</h3>
+    <ul class="list-group">
+        {% for repair in repairs %}
+        <li class="list-group-item">
+            <strong>{{ repair.service.name }}</strong> ({{ repair.status }})<br>
+            Дата: {{ repair.date }}<br>
+            Стоимость: {{ repair.cost }} руб.<br>
+            Детали ремонта: {{ repair.service.description }}
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Ремонтов нет.</p>
+{% endif %}
